@@ -43,6 +43,7 @@ namespace Polarbox
             this.label6 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -135,7 +136,7 @@ namespace Polarbox
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(413, 321);
+            this.btnEditar.Location = new System.Drawing.Point(224, 359);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 10;
@@ -169,11 +170,22 @@ namespace Polarbox
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(365, 321);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(130, 23);
+            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.Text = "Limpiar campos";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.label6);
@@ -212,6 +224,7 @@ namespace Polarbox
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

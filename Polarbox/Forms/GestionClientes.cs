@@ -34,11 +34,20 @@ namespace Polarbox
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)listClientes.SelectedItem;
-            txtNombre.Text = cliente.Nombre;
-            txtApellidos.Text = cliente.Apellidos;
-            txtDni.Text = cliente.Dni;
-            lblId.Text = cliente.Id;
+
+            if( listClientes.SelectedItems.Count == 0 )// Controla que tenemos algun elemento del listbox seleccionado
+            {
+                MessageBox.Show("Debe selecionar algun elemento");
+            }
+            else
+            {
+                Cliente cliente = (Cliente)listClientes.SelectedItem;
+                txtNombre.Text = cliente.Nombre;
+                txtApellidos.Text = cliente.Apellidos;
+                txtDni.Text = cliente.Dni;
+                lblId.Text = cliente.Id;
+            }
+            
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -50,18 +59,21 @@ namespace Polarbox
             cliente.Apellidos = txtApellidos.Text;
             cliente.Dni = txtDni.Text;
 
+            string dni = txtDni.Text;
+            //MessageBox.Show(dni);
+            
+
             if (lblId.Text != "")
             {
                 cliente.Id = lblId.Text;
             }
-
 
             ClienteDao basdeDeDatos = new ClienteDao();
             basdeDeDatos.Guardar(cliente);
             actualizarLista();
             limpiarCampos();
         }
-        private bool comprobarDni()
+        private bool comprobarDni(string dni)
         {
 
             return true;
@@ -91,17 +103,29 @@ namespace Polarbox
         //Boton eliminar
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //MessageBox.Show("Hoola");            
-            Cliente cliente = (Cliente)listClientes.SelectedItem;
-            ClienteDao baseDeDatos = new ClienteDao();
+            if (listClientes.SelectedItems.Count == 0)// Controla que tenemos algun elemento del listbox seleccionado
+            {
+                MessageBox.Show("Debe selecionar algun elemento");
+            }
+            else
+            {
+                Cliente cliente = (Cliente)listClientes.SelectedItem;
+                ClienteDao baseDeDatos = new ClienteDao();
+
+                baseDeDatos.Eliminar(cliente);
+                actualizarLista();
+            }
            
-            baseDeDatos.Eliminar(cliente);
-            actualizarLista();
         }
 
         private void listClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
         }
     }
 }
