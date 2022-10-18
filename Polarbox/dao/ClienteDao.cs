@@ -76,7 +76,7 @@ namespace Polarbox.dao
         {
             string consulta = "UPDATE `cliente` SET `nombre` = '"
                 + cliente.Nombre + "', `apellidos` = '" + cliente.Apellidos + "', `dni` = '" + cliente.Dni + "'" +
-                " WHERE `cliente`.`id` = 22;";
+                " WHERE `cliente`.`id` = "+cliente.Id+";";
 
             MySqlCommand comando = new MySqlCommand(consulta);
             comando.Connection = Conectar();

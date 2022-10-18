@@ -155,9 +155,8 @@ namespace Polarbox
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(589, 67);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(16, 17);
+            this.lblId.Size = new System.Drawing.Size(0, 17);
             this.lblId.TabIndex = 12;
-            this.lblId.Text = "0";
             // 
             // button1
             // 

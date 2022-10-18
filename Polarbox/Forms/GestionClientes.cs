@@ -93,11 +93,12 @@ namespace Polarbox
            
 
         }
-
+        //Boton eliminar
         private void button1_Click_1(object sender, EventArgs e)
         {
             Cliente cliente = (Cliente)listClientes.SelectedItem;
             ClienteDao baseDeDatos = new ClienteDao();
+
 
             baseDeDatos.Eliminar(cliente);
             actualizarLista();
