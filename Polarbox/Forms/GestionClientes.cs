@@ -1,12 +1,6 @@
 ﻿using Polarbox.dao;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polarbox
@@ -69,6 +63,7 @@ namespace Polarbox
         }
         private bool comprobarDni()
         {
+
             return true;
         }
         private void limpiarCampos()
@@ -78,7 +73,7 @@ namespace Polarbox
             txtDni.Text = "";
             lblId.Text = "";
         }
-        private void actualizarLista()
+        public void actualizarLista()
         {
             ClienteDao basdeDeDatos = new ClienteDao();
             List<Cliente> listaDb = basdeDeDatos.ObtenerlistadoDeClientes();
@@ -96,12 +91,17 @@ namespace Polarbox
         //Boton eliminar
         private void button1_Click_1(object sender, EventArgs e)
         {
+            //MessageBox.Show("Hoola");            
             Cliente cliente = (Cliente)listClientes.SelectedItem;
             ClienteDao baseDeDatos = new ClienteDao();
-
-
+           
             baseDeDatos.Eliminar(cliente);
             actualizarLista();
+        }
+
+        private void listClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

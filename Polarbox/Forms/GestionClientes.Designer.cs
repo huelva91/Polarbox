@@ -107,6 +107,7 @@ namespace Polarbox
             this.listClientes.Name = "listClientes";
             this.listClientes.Size = new System.Drawing.Size(246, 276);
             this.listClientes.TabIndex = 6;
+            this.listClientes.SelectedIndexChanged += new System.EventHandler(this.listClientes_SelectedIndexChanged);
             // 
             // txtDni
             // 
