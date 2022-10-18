@@ -65,6 +65,18 @@ namespace Polarbox
             ClienteDao basdeDeDatos = new ClienteDao();
             basdeDeDatos.Guardar(cliente);
             actualizarLista();
+            limpiarCampos();
+        }
+        private bool comprobarDni()
+        {
+            return true;
+        }
+        private void limpiarCampos()
+        {
+            txtNombre.Text = "";
+            txtApellidos.Text = "";
+            txtDni.Text = "";
+            lblId.Text = "";
         }
         private void actualizarLista()
         {

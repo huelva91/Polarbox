@@ -52,14 +52,35 @@ namespace Polarbox.dao
         
         public void Guardar(Cliente cliente)
         {
+            if( cliente.Id == null)
+            {
+                nuevoCliente(cliente);
+            }
+            else
+            {
+                modificarCliente(cliente);
+            }
+
+        }
+        public void nuevoCliente(Cliente cliente)
+        {
             string consulta = "INSERT INTO `cliente` (`id`, `nombre`, `apellidos`, `dni`)" +
-                " VALUES(NULL, '" + cliente.Nombre +"', '" +cliente.Apellidos+ "', '"+ cliente.Dni+"');";
-            
+                " VALUES(NULL, '" + cliente.Nombre + "', '" + cliente.Apellidos + "', '" + cliente.Dni + "');";
+
             MySqlCommand comando = new MySqlCommand(consulta);
             comando.Connection = Conectar();
             comando.ExecuteNonQuery();
+            comando.Connection.Close();
+        }
+        public void modificarCliente(Cliente cliente)
+        {
+            string consulta = "UPDATE `cliente` SET `nombre` = '"
+                + cliente.Nombre + "', `apellidos` = '" + cliente.Apellidos + "', `dni` = '" + cliente.Dni + "'" +
+                " WHERE `cliente`.`id` = 22;";
 
-
+            MySqlCommand comando = new MySqlCommand(consulta);
+            comando.Connection = Conectar();
+            comando.ExecuteNonQuery();
             comando.Connection.Close();
 
         }
