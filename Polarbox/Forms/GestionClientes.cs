@@ -53,30 +53,55 @@ namespace Polarbox
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
+
+
             Cliente cliente = new Cliente();
 
             cliente.Nombre = txtNombre.Text;
             cliente.Apellidos = txtApellidos.Text;
             cliente.Dni = txtDni.Text;
-
             string dni = txtDni.Text;
-            //MessageBox.Show(dni);
-            
 
-            if (lblId.Text != "")
+            if (comprobarDni(dni) == true && dni.Length == 9)
             {
-                cliente.Id = lblId.Text;
-            }
+                if (lblId.Text != "")
+                {
+                    cliente.Id = lblId.Text;
+                }
 
-            ClienteDao basdeDeDatos = new ClienteDao();
-            basdeDeDatos.Guardar(cliente);
-            actualizarLista();
-            limpiarCampos();
+                ClienteDao basdeDeDatos = new ClienteDao();
+                basdeDeDatos.Guardar(cliente);
+                actualizarLista();
+                limpiarCampos();
+
+            }
+            else
+                MessageBox.Show("Debes introducir un DNI correcto");
+
+
+            
+        }
+        private string calcularLetraDni(int numeroDni)
+        {
+            string[] control = { "T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N",
+                "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E" };
+            int modulo = numeroDni % 23;
+            return control[modulo];
+
         }
         private bool comprobarDni(string dni)
         {
+            int numerosDni = Int32.Parse(dni.Substring(0, 8));
+            string letraDni = dni.Substring(dni.Length - 1, 1);
 
-            return true;
+            string letraDniCalculado = calcularLetraDni(numerosDni);
+
+            if (letraDni.ToUpper() == letraDniCalculado && dni.Length == 9)
+            {
+                return true;
+            }
+            return false;
+            
         }
         private void limpiarCampos()
         {
