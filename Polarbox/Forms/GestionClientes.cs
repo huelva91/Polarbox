@@ -31,7 +31,7 @@ namespace Polarbox
         {
             actualizarLista();
         }
-
+        //Boton editar
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -41,13 +41,17 @@ namespace Polarbox
             }
             else
             {
-                Cliente cliente = (Cliente)listClientes.SelectedItem;
-                txtNombre.Text = cliente.Nombre;
-                txtApellidos.Text = cliente.Apellidos;
-                txtDni.Text = cliente.Dni;
-                lblId.Text = cliente.Id;
+                editarCampos();
             }
             
+        }
+        private void editarCampos()
+        {
+            Cliente cliente = (Cliente)listClientes.SelectedItem;
+            txtNombre.Text = cliente.Nombre;
+            txtApellidos.Text = cliente.Apellidos;
+            txtDni.Text = cliente.Dni;
+            lblId.Text = cliente.Id;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -91,16 +95,29 @@ namespace Polarbox
         }
         private bool comprobarDni(string dni)
         {
-            int numerosDni = Int32.Parse(dni.Substring(0, 8));
-            string letraDni = dni.Substring(dni.Length - 1, 1);
-
-            string letraDniCalculado = calcularLetraDni(numerosDni);
-
-            if (letraDni.ToUpper() == letraDniCalculado && dni.Length == 9)
+            try
             {
-                return true;
+                int numerosDni = Int32.Parse(dni.Substring(0, 8));
+                string letraDni = dni.Substring(dni.Length - 1, 1);
+
+
+                string letraDniCalculado = calcularLetraDni(numerosDni);
+
+                if (letraDni.ToUpper() == letraDniCalculado && dni.Length == 9)
+                {
+                    return true;
+                }
+                return false;
+
             }
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                return false;
+
+                
+            }
+            
             
         }
         private void limpiarCampos()
@@ -125,6 +142,23 @@ namespace Polarbox
            
 
         }
+        public bool existeDniDb()
+        {
+            ClienteDao basdeDeDatos = new ClienteDao();
+            List<Cliente> listaDb = basdeDeDatos.ObtenerlistadoDeClientes();
+
+            listClientes.Items.Clear();
+
+            for (int i = 0; i < listaDb.Count; i++)
+            {
+                Cliente cliente = listaDb[i];
+                listClientes.Items.Add(cliente);
+            }
+
+
+            return true;
+        }
+
         //Boton eliminar
         private void button1_Click_1(object sender, EventArgs e)
         {

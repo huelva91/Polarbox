@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Polarbox.dao
 {
@@ -20,7 +21,17 @@ namespace Polarbox.dao
                 + servidor + " ; User Id = " + usuario + " ; Password = " + password + "";
 
             MySqlConnection conexionDb = new MySqlConnection(cadenaConexion);
-            conexionDb.Open();
+
+            
+            try
+            {
+                conexionDb.Open();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Environment.Exit(0);
+            }
 
             return conexionDb;
         }
