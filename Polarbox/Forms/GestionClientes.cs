@@ -112,7 +112,6 @@ namespace Polarbox
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
                 return false;
 
                 
